@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:covid_tracker/Themes/theme.dart';
 import 'package:covid_tracker/View/splash_screen.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +14,8 @@ class CovidTracker extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      scrollBehavior: const MaterialScrollBehavior()
+          .copyWith(dragDevices: PointerDeviceKind.values.toSet()),
       debugShowCheckedModeBanner: false,
       themeMode: ThemeMode.system,
       theme: CTheme.lightTheme,
