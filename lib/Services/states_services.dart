@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:covid_tracker/Models/WorldStates.dart';
+import 'package:covid_tracker/Models/WorldStatesModel.dart';
 import 'package:covid_tracker/util/app_url.dart';
 import 'package:http/http.dart' as http;
 
