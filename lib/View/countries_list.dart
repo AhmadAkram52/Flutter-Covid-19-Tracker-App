@@ -1,7 +1,7 @@
 import 'package:covid_tracker/Models/CountriesListModel.dart';
 import 'package:covid_tracker/Services/countries_list_serviecs.dart';
+import 'package:covid_tracker/View/shimmer_effects.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class CountriesListView extends StatefulWidget {
   const CountriesListView({super.key});
@@ -10,13 +10,7 @@ class CountriesListView extends StatefulWidget {
   State<CountriesListView> createState() => _CountriesListViewState();
 }
 
-class _CountriesListViewState extends State<CountriesListView>
-    with TickerProviderStateMixin {
-  late final AnimationController _controller = AnimationController(
-    vsync: this,
-    duration: const Duration(seconds: 2),
-  )..repeat();
-
+class _CountriesListViewState extends State<CountriesListView> {
   List<CountriesListModel> cList = [];
 
   CountriesList countriesList = CountriesList();
@@ -34,61 +28,85 @@ class _CountriesListViewState extends State<CountriesListView>
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: TextField(
+              child: TextFormField(
                 controller: searchController,
-                decoration:
-                    InputDecoration(fillColor: Colors.red, filled: true),
+                decoration: const InputDecoration(
+                  hintText: "Search with Country Name...",
+                ),
                 onChanged: (se) {
                   setState(() {});
                 },
               ),
             ),
-            FutureBuilder<List<CountriesListModel>>(
-                future: countriesList.getCountriesList(cList),
-                builder: (context, snapShot) {
-                  if (!snapShot.hasData) {
-                    return Expanded(
-                      child: Center(
-                        child: SpinKitFadingCircle(
-                          size: 50,
-                          color: Colors.yellowAccent,
-                          controller: _controller,
-                        ),
-                      ),
-                    );
-                  } else {
-                    return Expanded(
-                      child: ListView.builder(
+            Expanded(
+              child: FutureBuilder<List<CountriesListModel>>(
+                  future: countriesList.getCountriesList(cList),
+                  builder: (context, snapShot) {
+                    if (!snapShot.hasData) {
+                      return ListView.builder(
+                          itemCount: 10,
+                          itemBuilder: (context, i) {
+                            return const CountriesListShimmer();
+                          });
+                    } else {
+                      return ListView.builder(
                           itemCount: cList.length,
                           itemBuilder: (context, i) {
-                            return Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 10, vertical: 4),
-                              child: InkWell(
-                                onTap: () {
-                                  setState(() {});
-                                },
-                                child: ListTile(
-                                  style: ListTileStyle.drawer,
-                                  tileColor: Brightness == Brightness.dark
-                                      ? Colors.teal
-                                      : Colors.pink.shade200,
-                                  leading: Image(
-                                    image: NetworkImage(
-                                        cList[i].countryInfo!.flag.toString()),
-                                    height: 30,
-                                    width: 50,
-                                    fit: BoxFit.fill,
+                            String countryName = cList[i].country.toString();
+                            if (searchController.text.isEmpty) {
+                              return Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 10, vertical: 4),
+                                child: InkWell(
+                                  onTap: () {
+                                    setState(() {});
+                                  },
+                                  child: ListTile(
+                                    leading: Image(
+                                      image: NetworkImage(cList[i]
+                                          .countryInfo!
+                                          .flag
+                                          .toString()),
+                                      height: 30,
+                                      width: 50,
+                                      fit: BoxFit.fill,
+                                    ),
+                                    title: Text(cList[i].country.toString()),
+                                    subtitle: Text(cList[i].cases.toString()),
                                   ),
-                                  title: Text(cList[i].country.toString()),
-                                  subtitle: Text(cList[i].cases.toString()),
                                 ),
-                              ),
-                            );
-                          }),
-                    );
-                  }
-                })
+                              );
+                            } else if (countryName.toLowerCase().contains(
+                                searchController.text.toLowerCase())) {
+                              return Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 10, vertical: 4),
+                                child: InkWell(
+                                  onTap: () {
+                                    setState(() {});
+                                  },
+                                  child: ListTile(
+                                    leading: Image(
+                                      image: NetworkImage(cList[i]
+                                          .countryInfo!
+                                          .flag
+                                          .toString()),
+                                      height: 30,
+                                      width: 50,
+                                      fit: BoxFit.fill,
+                                    ),
+                                    title: Text(cList[i].country.toString()),
+                                    subtitle: Text(cList[i].cases.toString()),
+                                  ),
+                                ),
+                              );
+                            } else {
+                              return Container();
+                            }
+                          });
+                    }
+                  }),
+            )
           ],
         ),
       ),
