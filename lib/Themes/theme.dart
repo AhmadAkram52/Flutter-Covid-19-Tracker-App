@@ -1,5 +1,5 @@
-import 'package:covid_tracker/Themes/listtile_theme.dart';
-import 'package:covid_tracker/Themes/textfield_theme.dart';
+import 'package:covid_tracker/Themes/list-tile_theme.dart';
+import 'package:covid_tracker/Themes/text-field_theme.dart';
 import 'package:flutter/material.dart';
 
 class CTheme {

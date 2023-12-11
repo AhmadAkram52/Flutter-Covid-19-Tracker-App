@@ -1,6 +1,7 @@
 import 'package:covid_tracker/Models/WorldStatesModel.dart';
 import 'package:covid_tracker/Services/states_services.dart';
-import 'package:covid_tracker/View/countries_list.dart';
+import 'package:covid_tracker/View/countries_list_screen.dart';
+import 'package:covid_tracker/View/widgets/values_row.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:pie_chart/pie_chart.dart';
@@ -36,12 +37,10 @@ class _WorldStatScreenState extends State<WorldStatScreen>
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
-            body: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        FutureBuilder(
+    return Scaffold(
+      body: Padding(
+        padding: const EdgeInsets.only(top: 80),
+        child: FutureBuilder(
             future: statesServices.getState(),
             builder: (context, AsyncSnapshot<WorldStates> sn) {
               if (!sn.hasData) {
@@ -130,26 +129,6 @@ class _WorldStatScreenState extends State<WorldStatScreen>
                 );
               }
             }),
-      ],
-    )));
-  }
-}
-
-class ValuesRow extends StatelessWidget {
-  final String title, value;
-
-  const ValuesRow({super.key, required this.title, required this.value});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(title),
-          Text(value),
-        ],
       ),
     );
   }
