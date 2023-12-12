@@ -36,64 +36,68 @@ class _CountryDetailScreenState extends State<CountryDetailScreen> {
       appBar: AppBar(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 18.0),
-        child: Card(
-          elevation: 50,
-          child: Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Column(
-              children: [
-                Card(
-                  elevation: 30,
-                  child: Image(
-                    image: NetworkImage(widget.countryImage),
-                  ),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Text(
-                  widget.countryName,
-                  style: const TextStyle(fontSize: 25),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Card(
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+          child: Card(
+            elevation: 50,
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Column(
+                children: [
+                  Card(
                     elevation: 30,
-                    child: Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: Column(
-                        children: [
-                          ValuesRow(
-                              title: "Total Cases",
-                              value: widget.totalCases.toString()),
-                          ValuesRow(
-                              title: "Recovered",
-                              value: widget.recovered.toString()),
-                          ValuesRow(
-                              title: "Deaths", value: widget.deaths.toString()),
-                          ValuesRow(
-                              title: "Actives",
-                              value: widget.actives.toString()),
-                          ValuesRow(
-                              title: "Critical",
-                              value: widget.critical.toString()),
-                          ValuesRow(
-                              title: "Today Cases",
-                              value: widget.todayCases.toString()),
-                          ValuesRow(
-                              title: "Today Recovered",
-                              value: widget.todayRecovered.toString()),
-                          ValuesRow(
-                              title: "Today Deaths",
-                              value: widget.todayDeaths.toString()),
-                        ],
+                    child: Image(
+                      height: 120,
+                      image: NetworkImage(widget.countryImage),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    widget.countryName,
+                    style: const TextStyle(fontSize: 25),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Card(
+                      elevation: 30,
+                      child: Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: Column(
+                          children: [
+                            ValuesRow(
+                                title: "Total Cases",
+                                value: widget.totalCases.toString()),
+                            ValuesRow(
+                                title: "Recovered",
+                                value: widget.recovered.toString()),
+                            ValuesRow(
+                                title: "Deaths",
+                                value: widget.deaths.toString()),
+                            ValuesRow(
+                                title: "Actives",
+                                value: widget.actives.toString()),
+                            ValuesRow(
+                                title: "Critical",
+                                value: widget.critical.toString()),
+                            ValuesRow(
+                                title: "Today Cases",
+                                value: widget.todayCases.toString()),
+                            ValuesRow(
+                                title: "Today Recovered",
+                                value: widget.todayRecovered.toString()),
+                            ValuesRow(
+                                title: "Today Deaths",
+                                value: widget.todayDeaths.toString()),
+                          ],
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),

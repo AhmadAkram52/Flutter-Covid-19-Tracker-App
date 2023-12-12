@@ -51,15 +51,15 @@ class _SplashScreenState extends State<SplashScreen>
               child: Center(
                 child: Stack(
                   children: [
-                    RotationTransition(
-                      turns: _animation,
-                      child: Container(
-                        transform: Matrix4.rotationZ(-20),
-                        child: const Image(
-                          image: AssetImage('assets/images/virus-1.png'),
-                        ),
-                      ),
-                    ),
+                    // RotationTransition(
+                    //   turns: _animation,
+                    //   child: Container(
+                    //     transform: Matrix4.rotationZ(-20),
+                    //     child: const Image(
+                    //       image: AssetImage('assets/images/virus-1.png'),
+                    //     ),
+                    //   ),
+                    // ),
                     RotationTransition(
                       turns: _controller,
                       child: Container(
@@ -96,7 +96,7 @@ class _SplashScreenState extends State<SplashScreen>
                       child: Container(
                         transform: Matrix4.rotationZ(-1.4),
                         child: const Image(
-                          height: 300,
+                          height: 200,
                           image: AssetImage('assets/images/virus-3.png'),
                         ),
                       ),
@@ -104,6 +104,7 @@ class _SplashScreenState extends State<SplashScreen>
                     RotationTransition(
                       turns: _controller,
                       child: Container(
+                        height: 100,
                         transform: Matrix4.rotationZ(-8),
                         child: const Image(
                           image: AssetImage('assets/images/virus-4.png'),

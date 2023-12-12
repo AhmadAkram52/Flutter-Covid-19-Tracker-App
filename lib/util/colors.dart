@@ -4,7 +4,7 @@ class CColors {
   static List<Color> chartColorsList = [
     Colors.teal,
     Colors.red,
-    Colors.blueAccent,
+    Colors.orange,
     Colors.yellow,
     Colors.pink,
   ];

@@ -26,16 +26,19 @@ class _CountriesListViewState extends State<CountriesListView> {
       ),
       body: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: TextFormField(
-              controller: searchController,
-              decoration: const InputDecoration(
-                hintText: "Search with Country Name...",
+          Container(
+            color: Theme.of(context).scaffoldBackgroundColor,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: TextFormField(
+                controller: searchController,
+                decoration: const InputDecoration(
+                  hintText: "Search with Country Name...",
+                ),
+                onChanged: (val) {
+                  setState(() {});
+                },
               ),
-              onChanged: (val) {
-                setState(() {});
-              },
             ),
           ),
           Expanded(
